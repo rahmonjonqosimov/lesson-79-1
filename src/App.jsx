@@ -5,6 +5,7 @@ import Navbar from "./component/navbar/Navbar";
 import "./sass/main.scss";
 import SingleRoute from "./router/single-route/SingleRoute";
 import Wishes from "./router/wishes/Wishes";
+import ProductCart from "./router/product-cart/ProductCart";
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/wishes" element={<Wishes />} />
+        <Route path="/cart" element={<ProductCart />} />
         <Route
           path={"*"}
           element={

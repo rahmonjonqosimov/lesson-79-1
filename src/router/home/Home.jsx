@@ -12,6 +12,7 @@ const Home = () => {
         data={data?.products}
         isLoading={isLoading}
         title={"Our Products"}
+        btn={true}
       />
     </>
   );

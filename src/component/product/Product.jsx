@@ -5,8 +5,9 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleHeart } from "../../redux/heartSlice";
 import { FaHeart } from "react-icons/fa6";
+import { addToCart } from "../../redux/cartSlice";
 
-const Product = ({ data, isLoading, title }) => {
+const Product = ({ data, isLoading, title, btn }) => {
   const dispatch = useDispatch();
   const wishes = useSelector((s) => s.heart.value);
   const navigate = useNavigate();
@@ -25,7 +26,9 @@ const Product = ({ data, isLoading, title }) => {
           src={el.images[0]}
           alt={el.title}
         />
-        <button className="card__btn">Add To Card</button>
+        <button onClick={() => dispatch(addToCart(el))} className="card__btn">
+          Add To Card
+        </button>
       </div>
       <h5>{el.title}</h5>
       <span>
@@ -42,7 +45,13 @@ const Product = ({ data, isLoading, title }) => {
           <h5>{title}</h5>
         </div>
         <div className="wrapper">{card}</div>
-        <button className="btn">{isLoading ? "Loading..." : "See More"}</button>
+        {btn ? (
+          <button className="btn">
+            {isLoading ? "Loading..." : "See More"}
+          </button>
+        ) : (
+          <></>
+        )}
       </div>
     </section>
   );

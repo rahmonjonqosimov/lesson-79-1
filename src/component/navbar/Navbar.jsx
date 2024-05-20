@@ -8,6 +8,8 @@ import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const wishes = useSelector((s) => s.heart.value);
+  const cart = useSelector((s) => s.cart.value);
+  const [menu, setMenu] = useState(false);
   const navigate = useNavigate();
   const [value, setValue] = useState("");
   const { data } = useGetSearchProductsQuery({ q: value });
@@ -57,6 +59,15 @@ const Navbar = () => {
           Exclusive
         </NavLink>
 
+        <div
+          onClick={() => setMenu((p) => !p)}
+          className={`menu ${menu ? "show" : ""}`}
+        >
+          <div className="menu__item"></div>
+          <div className="menu__item"></div>
+          <div className="menu__item"></div>
+        </div>
+
         <div className="component">
           <form>
             <input
@@ -78,7 +89,8 @@ const Navbar = () => {
             <></>
           )}
         </div>
-        <ul>
+
+        <ul className={`nav__link ${menu ? "show" : ""} `}>
           {link}
           <li>
             <NavLink to={"/wishes"}>
@@ -89,7 +101,7 @@ const Navbar = () => {
           <li>
             <NavLink to={"/cart"}>
               <BsCart3 className="heart" />
-              <sup className="count">{0}</sup>
+              <sup className="count">{cart.length}</sup>
             </NavLink>
           </li>
         </ul>
